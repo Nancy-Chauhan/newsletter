@@ -1,14 +1,26 @@
 from django.contrib import admin
 
+from . import tasks
 from .models import Newsletter, Subscriber, Issue, Subscription
 
-admin.site.register(Issue)
 admin.site.register(Subscription)
 
 
-class IssueAdmin(admin.StackedInline):
+def send(modeladmin, request, queryset):
+    for issue in queryset:
+        tasks.send_issue.delay(issue.id)
+
+
+send.short_description = "send"
+
+
+class IssueInline(admin.StackedInline):
     model = Issue
-    pass
+
+
+@admin.register(Issue)
+class IssueAdmin(admin.ModelAdmin):
+    actions = [send]
 
 
 class SubscriptionAdmin(admin.StackedInline):
@@ -18,7 +30,7 @@ class SubscriptionAdmin(admin.StackedInline):
 
 @admin.register(Newsletter)
 class NewsletterAdmin(admin.ModelAdmin):
-    inlines = (IssueAdmin, SubscriptionAdmin)
+    inlines = (IssueInline, SubscriptionAdmin)
 
 
 @admin.register(Subscriber)
