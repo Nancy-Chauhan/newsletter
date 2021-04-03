@@ -54,7 +54,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
-
+db.sqlite3
 # Translations
 *.mo
 *.pot
