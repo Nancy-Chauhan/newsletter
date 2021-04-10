@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 celery = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
