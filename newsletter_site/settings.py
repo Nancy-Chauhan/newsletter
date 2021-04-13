@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'newsletter_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-uri = os.getenv('DATABASE_URI')
+uri = os.getenv('DATABASE_URL')
 
 result = urlparse(uri)
 
