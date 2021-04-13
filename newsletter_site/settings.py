@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+from urllib.parse import urlparse
 
 import dotenv
 
@@ -74,10 +75,24 @@ WSGI_APPLICATION = 'newsletter_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+uri = os.getenv('DATABASE_URI')
+
+result = urlparse(uri)
+
+database = result.path[1:]
+user = result.username
+password = result.password
+host = result.hostname
+port = result.port
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': database,
+        'USER': user,
+        'PASSWORD': password,
+        'HOST': host,
+        'PORT': port,
     }
 }
 
