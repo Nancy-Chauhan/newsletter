@@ -8,6 +8,7 @@ django = "*"
 celery = "*"
 python-dotenv = "*"
 psycopg2-binary = "*"
+gunicorn = "*"
 
 [dev-packages]
 
