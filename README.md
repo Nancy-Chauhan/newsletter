@@ -54,3 +54,5 @@ DEBUG=True
 `celery -A newsletter_site worker --loglevel=INFO`
 
 Add a newsletter and a subscriber and subscribe them to it. Create an issue and send it. If everything is fine you will see an issue arriving in your email. 
+
+Refer blog post : https://medium.com/@_nancychauhan/introduction-to-message-queue-build-a-newsletter-app-using-django-celery-and-rabbitmq-in-30-min-6d484162391d 
